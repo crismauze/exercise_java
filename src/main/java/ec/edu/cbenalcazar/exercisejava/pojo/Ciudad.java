@@ -33,7 +33,7 @@ public class Ciudad {
 
 	@Override
 	public String toString() {
-		return "Ciudad [nombre=" + nombre + ", rutaList=" + rutaSet + "]";
+		return "Ciudad [nombre=" + nombre + "]";
 	}
 	
 	@Override

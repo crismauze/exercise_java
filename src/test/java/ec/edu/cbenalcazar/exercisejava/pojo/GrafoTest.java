@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import ec.edu.cbenalcazar.exercisejava.exceptions.GrafoException;
 import ec.edu.cbenalcazar.exercisejava.exceptions.RutaException;
+import ec.edu.cbenalcazar.exercisejava.exceptions.RutaNoExisteException;
 
 public class GrafoTest {
 	private static final String DEFINICION_GRAFO = "AB5,BC4,CD8,DC8,DE6,AD5,CE2,EB3,AE7";
@@ -82,20 +83,20 @@ public class GrafoTest {
         }
     }
 
-    @Test
-    public void evaluarRutaNoExistente() {
-        try {
-            grafo.validarRuta(RUTA_EVALUAR_NO_VALIDA);
-        } catch (GrafoException | RutaException e) {
-            Assert.fail();
-        }
-    }
+	@Test(expected = RutaException.class)
+	public void evaluarRutaNoExistente() throws RutaException {
+		try {
+			grafo.validarRuta(RUTA_EVALUAR_NO_VALIDA);
+		} catch (GrafoException e) {
+			Assert.fail();
+		}
+	}
 
-    @Test
-    public void evaluarRutaCiudadNoExistente() {
+    @Test(expected = GrafoException.class)
+    public void evaluarRutaCiudadNoExistente() throws GrafoException {
         try {
             grafo.validarRuta(RUTA_EVALUAR_CIUDAD_NO_EXISTENTE);
-        } catch (GrafoException | RutaException e) {
+        } catch (RutaException e) {
             Assert.fail();
         }
     }
@@ -144,8 +145,9 @@ public class GrafoTest {
         } catch (RutaException e) {
             // Output #5: NO SUCH ROUTE
         	System.out.println("NO SUCH ROUTE");
-        	e.printStackTrace();
+//        	e.printStackTrace();
         } catch (GrafoException e) {
+//        	e.printStackTrace();
             Assert.fail();
         }
 
@@ -160,6 +162,7 @@ public class GrafoTest {
             // Output #6: 2
             Assert.assertEquals(2, rutasConMaximoTresParadas.size());
         } catch (GrafoException e) {
+        	e.printStackTrace();
             Assert.fail();
         }
 
