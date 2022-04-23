@@ -43,5 +43,22 @@ public class Ruta {
 		return "Ruta [ciudadOrigen=" + ciudadOrigen + ", ciudadDestino=" + ciudadDestino + ", distancia=" + distancia
 				+ "]";
 	}
+	
+	@Override
+    public boolean equals(Object o) {
+        if (Objects.nonNull(o) && o instanceof Ruta) {
+            Ruta otra = (Ruta) o;
+            return Objects.equals(this.ciudadOrigen, otra.ciudadOrigen)
+                    && Objects.equals(this.ciudadDestino, otra.ciudadDestino)
+                    && Objects.equals(this.distancia, otra.distancia);
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ciudadOrigen, ciudadDestino, distancia);
+    }
 
 }

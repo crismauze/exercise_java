@@ -16,6 +16,7 @@ import ec.edu.cbenalcazar.exercisejava.exceptions.RutaException;
 
 public class GrafoTest {
 	private static final String DEFINICION_GRAFO = "AB5,BC4,CD8,DC8,DE6,AD5,CE2,EB3,AE7";
+	//private static final String DEFINICION_GRAFO = "AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7";
     private static final String DEFINICION_GRAFO_NO_VALIDO = "ABC";
     private static final String NOMBRE_CIUDAD_A = "A";
     private static final String NOMBRE_CIUDAD_B = "B";
@@ -132,6 +133,7 @@ public class GrafoTest {
             // Output #4: 22
             Assert.assertEquals(22, distanciaRuta);
         } catch (GrafoException | RutaException e) {
+        	System.out.println("Error, causa: " + e);
             Assert.fail();
         }
 
@@ -142,6 +144,7 @@ public class GrafoTest {
         } catch (RutaException e) {
             // Output #5: NO SUCH ROUTE
         	System.out.println("NO SUCH ROUTE");
+        	e.printStackTrace();
         } catch (GrafoException e) {
             Assert.fail();
         }
@@ -177,9 +180,9 @@ public class GrafoTest {
 
 
             for (Queue<Ruta> rutas : rutasConMaximoTresParadas) {
-                System.out.println("Ruta ");
+                System.out.println("Ruta: ");
                 for (Ruta ruta : rutas) {
-                    System.out.print(ruta.toString());
+                    System.out.print(ruta);
                 }
             }
         } catch (GrafoException e) {

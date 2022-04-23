@@ -1,6 +1,6 @@
 package ec.edu.cbenalcazar.exercisejava.pojo;
 
-import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -27,7 +27,7 @@ public class Ciudad {
 		if (rutaOptional.isPresent()) {
 			return rutaOptional.get();
 		} else {
-			throw new RutaException("No existe ruta a la ciudad: " + ciudadDestino);
+			throw new RutaException("No existe ruta a la ciudad: " + rutaCiudad);
 		}
 	}
 
@@ -36,6 +36,20 @@ public class Ciudad {
 		return "Ciudad [nombre=" + nombre + ", rutaList=" + rutaSet + "]";
 	}
 	
+	@Override
+    public boolean equals(Object o) {
+        if (Objects.nonNull(o) && o instanceof Ciudad) {
+            Ciudad otra = (Ciudad) o;
+            return Objects.equals(this.nombre, otra.nombre);
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre);
+    }
 	
 	
 
